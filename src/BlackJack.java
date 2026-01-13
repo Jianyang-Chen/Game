@@ -31,6 +31,7 @@ public class BlackJack {
                 this.player.addToHandValue(deck.dealCard().getValue());
                 if (this.player.getHandValue() > this.WINNING_VALUE) {
                     System.out.println("Player busts!");
+                    System.out.println("Player hand value: " + this.player.getHandValue());
                     this.player.setBusts();
                 } else if (this.player.getHandValue() == this.WINNING_VALUE) {
                     System.out.println("Player hits 21!");
