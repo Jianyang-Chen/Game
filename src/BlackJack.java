@@ -6,8 +6,12 @@ public class BlackJack {
     private final Scanner scan = new Scanner(System.in);
     private final int WINNING_VALUE = 21;
     private final Deck deck = new Deck();
-    private Player player = new Player("Player");
+    private Player player;
     private final Dealer dealer = new Dealer();
+
+    public BlackJack(String playerName) {
+        this.player = new Player(playerName);
+    }
 
     public void startGame() {
         deck.shuffle();
@@ -23,18 +27,18 @@ public class BlackJack {
 
     public void playerTurn() {
         if (!this.player.isStanding()) {
-            System.out.println("Player's turn:");
+            System.out.println(this.player.getName() + "'s turn:");
             System.out.println("Current hand value: " + this.player.getHandValue());
             System.out.print("Do you want to (h)it or (s)tand? ");
             String choice = scan.nextLine();
             if (choice.equalsIgnoreCase("h")) {
                 this.player.addToHandValue(deck.dealCard().getValue());
                 if (this.player.getHandValue() > this.WINNING_VALUE) {
-                    System.out.println("Player busts!");
-                    System.out.println("Player hand value: " + this.player.getHandValue());
+                    System.out.println(this.player.getName() + " busts!");
+                    System.out.println(this.player.getName() + " hand value: " + this.player.getHandValue());
                     this.player.setBust();
                 } else if (this.player.getHandValue() == this.WINNING_VALUE) {
-                    System.out.println("Player hits 21!");
+                    System.out.println(this.player.getName() + " hits 21!");
                     this.player.setStanding();
                 }
             } else {
@@ -68,9 +72,9 @@ public class BlackJack {
         if (this.player.isBust()) {
             System.out.println("Dealer wins!");
         } else if (this.dealer.isBust()) {
-            System.out.println("Player wins!");
+            System.out.println(this.player.getName() + " wins!");
         } else if (this.player.getHandValue() > this.dealer.getHandValue()) {
-            System.out.println("Player wins!");
+            System.out.println(this.player.getName() + " wins!");
         } else if (this.player.getHandValue() < this.dealer.getHandValue()) {
             System.out.println("Dealer wins!");
         } else {
