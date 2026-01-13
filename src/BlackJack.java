@@ -32,7 +32,7 @@ public class BlackJack {
                 if (this.player.getHandValue() > this.WINNING_VALUE) {
                     System.out.println("Player busts!");
                     System.out.println("Player hand value: " + this.player.getHandValue());
-                    this.player.setBusts();
+                    this.player.setBust();
                 } else if (this.player.getHandValue() == this.WINNING_VALUE) {
                     System.out.println("Player hits 21!");
                     this.player.setStanding();
@@ -44,15 +44,15 @@ public class BlackJack {
     }
 
     public void dealerTurn() {
-        while (this.dealer.getHandValue() < 17 && !this.player.isBusts()) {
+        while (this.dealer.getHandValue() < 17 && !this.player.isBust()) {
             System.out.println("Dealer hits.");
             this.dealer.addToHandValue(deck.dealCard().getValue());
         }
         if (this.dealer.getHandValue() > this.WINNING_VALUE) {
             System.out.println("Dealer busts!");
-            this.dealer.setBusts();
+            this.dealer.setBust();
         }
-        if (!this.dealer.isBusts()) {
+        if (!this.dealer.isBust()) {
             System.out.println("Dealer stands.");
             this.dealer.setStanding();
         }
@@ -60,14 +60,14 @@ public class BlackJack {
     }
 
     public boolean isGameOver() {
-        return this.player.isBusts() || this.dealer.isBusts() || this.player.isStanding() || this.dealer.isStanding();
+        return this.player.isBust() || this.dealer.isBust() || this.player.isStanding() || this.dealer.isStanding();
     }
 
     public void winner() {
         System.out.println("Dealer hand value: " + this.dealer.getHandValue());
-        if (this.player.isBusts()) {
+        if (this.player.isBust()) {
             System.out.println("Dealer wins!");
-        } else if (this.dealer.isBusts()) {
+        } else if (this.dealer.isBust()) {
             System.out.println("Player wins!");
         } else if (this.player.getHandValue() > this.dealer.getHandValue()) {
             System.out.println("Player wins!");

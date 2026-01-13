@@ -28,11 +28,11 @@ public class Player {
         return this.stand;
     }
 
-    public boolean isBusts() {
+    public boolean isBust() {
         return this.busts;
     }
 
-    public void setBusts() {
+    public void setBust() {
         this.busts = true;
     }
 
