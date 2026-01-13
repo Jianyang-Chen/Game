@@ -8,13 +8,13 @@ public class Deck {
     private final String[] RANKS = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"};
 
     public Deck() {
-        this.cards = new ArrayList<Card>();
+        this.cards = new ArrayList<>();
         for (String suit : this.SUITS) {
             for (String rank : this.RANKS) {
                 this.cards.add(new Card(suit, rank));
             }
         }
-        System.out.println(this.cards.get(0).getRank());
+        this.shuffle();
     }
 
     public Card dealCard() {
@@ -24,8 +24,22 @@ public class Deck {
         return this.cards.remove(this.cards.size() - 1);
     }
 
+    public void resetDeck() {
+        this.cards.clear();
+        for (String suit : this.SUITS) {
+            for (String rank : this.RANKS) {
+                this.cards.add(new Card(suit, rank));
+            }
+        }
+        this.shuffle();
+    }
+
+    public boolean isEmpty() {
+        return this.cards.isEmpty();
+    }
+
     public void shuffle() {
-        ArrayList<Card> shuffled = new ArrayList<Card>();
+        ArrayList<Card> shuffled = new ArrayList<>();
         while (!this.cards.isEmpty()) {
             int index = (int) (Math.random() * this.cards.size());
             shuffled.add(this.cards.remove(index));

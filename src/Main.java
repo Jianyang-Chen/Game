@@ -2,6 +2,12 @@
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Deck deck = new Deck();
+        BlackJack game = new BlackJack();
+        game.startGame();
+        while (!game.isGameOver()) {
+            game.playerTurn();
+        }
+        game.dealerTurn();
+        game.winner();
     }
 }

@@ -1,8 +1,8 @@
 
 public class Card {
 
-    private String suit;
-    private String rank;
+    private final String suit;
+    private final String rank;
 
     public Card(String suit, String rank) {
         this.suit = suit;
@@ -15,6 +15,17 @@ public class Card {
 
     public String getRank() {
         return this.rank;
+    }
+
+    public int getValue() {
+        return switch (this.rank) {
+            case "ACE" ->
+                11;
+            case "KING", "QUEEN", "JACK" ->
+                10;
+            default ->
+                Integer.parseInt(this.rank);
+        };
     }
 
 }
