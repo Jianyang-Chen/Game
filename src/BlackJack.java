@@ -6,7 +6,7 @@ public class BlackJack {
     private final Scanner scan = new Scanner(System.in);
     private final int WINNING_VALUE = 21;
     private final Deck deck = new Deck();
-    private Player player;
+    private final Player player;
     private final Dealer dealer = new Dealer();
 
     public BlackJack(String playerName) {
