@@ -6,16 +6,21 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         System.out.print("Please enter your name: ");
+        String response = "y";
         String name = scan.nextLine();
-        BlackJack game = new BlackJack(name);
+        while (response.equalsIgnoreCase("y")) {
+            BlackJack game = new BlackJack(name);
+            game.startGame();
+            while (!game.isGameOver()) {
+                game.playerTurn();
+            }
+            game.dealerTurn();
+            game.winner();
 
-        game.startGame();
-        while (!game.isGameOver()) {
-            game.playerTurn();
+            System.out.println("Would you like to play again?");
+            response = scan.nextLine();
+
         }
-        game.dealerTurn();
-        game.winner();
-
         scan.close();
 
     }
